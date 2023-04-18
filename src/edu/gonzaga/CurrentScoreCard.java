@@ -11,50 +11,47 @@ import java.util.Scanner;
 public class CurrentScoreCard {
     String scoreline;
     int currentScore;
-    //    int totalScore;
     int count;
     int maxCount;
 
-    public int getScore() {
-        for (count = 1; count <= 13; count++) {
-            HandOfDice dice = new HandOfDice();
-
+    public void getScore(HandOfDice dice)
+    {
+        for (count = 1; count <= 13; count++)
+        {
             System.out.println(" ");
             System.out.println("**********Menu of Scorecard Choices**********");
-            System.out.println("1. Ones (1S)           7. Three of a Kind (3K)");
-            System.out.println("2. Twos (2S)           8. Four of a Kind (4K)");
-            System.out.println("3. Threes (3S)         9. Five of a Kind (5K)");
-            System.out.println("4. Fours (4S)          10. Full House (FH)");
-            System.out.println("5. Five (5S)           11. Large Straight (LS)");
-            System.out.println("6. Sixes (6S)          12. Small Straight (SS)");
-            System.out.println("                       13. Yahtzee (YH)");
-            System.out.println("                       14. Chance (CH)");
-            System.out.println("-*********************************************");
+            System.out.println("Ones (1)                Three of a Kind (7)");
+            System.out.println("Twos (2)                Four of a Kind (8)");
+            System.out.println("Threes (3)              Five of a Kind (9)");
+            System.out.println("Fours (4)               Full House (10)");
+            System.out.println("Five (5)                Large Straight (11)");
+            System.out.println("Sixes (6)               Small Straight (12)");
+            System.out.println("                        Yahtzee (13)");
+            System.out.println("                        Chance (14)");
+            System.out.println("**********************************************");
             System.out.println(" ");
 
-            //user chooses a line to score based in the menu
             Scanner in = new Scanner(System.in);
-            System.out.println("Which scoreline would you like to count?");
-
+            System.out.println("Which scoreline would you like to count? (enter the number in the parentheses)");
             scoreline = in.next();
             Integer scoreline2 = Integer.valueOf(scoreline);
 
             if (scoreline2 <= 6)
             {
                 UpperScoreCard upcard = new UpperScoreCard(dice);
-                int scoreChosen = upcard.chosenScore;
+                int scoreChosen = upcard.chosenScore(scoreline2);
                 currentScore += scoreChosen;
             }
             else if (scoreline2 == 7)
             {
                 LowerScoreCard lowcard = new LowerScoreCard(dice);
-                int maxC = lowcard.returnMax();
+                int maxC = lowcard.totalAllDice();
                 currentScore += maxC;
             }
             else if (scoreline2 == 8)
             {
                 LowerScoreCard lowcard = new LowerScoreCard(dice);
-                int maxC = lowcard.returnMax();
+                int maxC = lowcard.totalAllDice();
                 currentScore += maxC;
             }
             else if (scoreline2 == 9)
@@ -81,11 +78,10 @@ public class CurrentScoreCard {
             }
             else
             {
-                currentScore = 0;
+                System.out.print("Enter a valid option please");
             }
 
-            int totalScore = currentScore;
-            System.out.println("Your total game score is: " + totalScore);
+            System.out.println("Your total game score is: " + currentScore);
             dice.rollHand();
             dice.sortHand();
             UpperScoreCard upcard = new UpperScoreCard(dice);
@@ -93,7 +89,6 @@ public class CurrentScoreCard {
             LowerScoreCard lowcard = new LowerScoreCard(dice);
             lowcard.lowScoreCard();
         }
-        return 0;
     }
 
     public int totalScore()

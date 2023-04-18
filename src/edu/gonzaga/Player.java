@@ -5,15 +5,14 @@
  */
 
 package edu.gonzaga;
+import java.io.IOException;
 import java.util.Scanner;
-import java.util.*;
 
 public class Player
 {
 
     //banner that prints out when the game starts
-    public boolean playGame()
-    {
+    public boolean playGame() throws IOException {
         System.out.println("***************************************");
         System.out.println("*                                     *");
         System.out.println("*       WELCOME TO YAHTZEE            *");
@@ -43,6 +42,9 @@ public class Player
         char play = play1.charAt(0);
         if(play == 'y')
         {
+            TopScorersList topScorers = new TopScorersList();
+            topScorers.readFile();
+            topScorers.printTopTen();
             HandOfDice dice = new HandOfDice();
             dice.rollHand();
             dice.sortHand();
@@ -51,7 +53,10 @@ public class Player
             LowerScoreCard lowcard = new LowerScoreCard(dice);
             lowcard.lowScoreCard();
             CurrentScoreCard currentscore = new CurrentScoreCard();
-            currentscore.getScore();
+            currentscore.getScore(dice);
+            TopScorer player = new TopScorer(playerName, currentscore.currentScore);
+            topScorers.printCurrentPlayerPlace(player);
+            topScorers.saveTopTenPlayers();
         }
         else if(play == 'n')
         {
@@ -62,6 +67,16 @@ public class Player
             System.out.println("Play again soon!");
             return false;
         }
-        return true;
+        return playGame();
+    }
+
+    public void savePlayerName(String crandall)
+    {
+        savePlayerName("Crandall");
+    }
+
+    public String getPlayerName()
+    {
+        return null;
     }
 }

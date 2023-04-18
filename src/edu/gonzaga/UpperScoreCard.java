@@ -17,7 +17,8 @@ public class UpperScoreCard extends CurrentScoreCard
         this.hand = hand;
     }
 
-    public void upScoreCard() {
+    public void upScoreCard()
+    {
         for (int dieValue = 1; dieValue <= 6; dieValue++)
         {
             int currentCount = 0;
@@ -27,7 +28,6 @@ public class UpperScoreCard extends CurrentScoreCard
                 if (hand.handArray.get(diePosition) == dieValue)
                     currentCount++;
             }
-
             System.out.println("Score " + dieValue * currentCount + " on the " + dieValue + " line");
             int lineScore = dieValue + currentCount;
 
@@ -39,18 +39,41 @@ public class UpperScoreCard extends CurrentScoreCard
 
         upperScore += chosenScore;
 
-        if (upperScore >= 63) {
+        if (upperScore >= 63)
+        {
             upperScore += 35;
         }
     }
 
-    public int chosenScore()
+    public int chosenScore(int num)
     {
-        return chosenScore();
+        for (int diePosition = 0; diePosition < 5; diePosition++)
+        {
+            if (hand.handArray.get(diePosition) == num)
+                chosenScore += num;
+        }
+
+        upperScore += chosenScore;
+
+        if (upperScore >= 63)
+        {
+            upperScore += 35;
+        }
+        return upperScore;
     }
 
     public int returnTotal()
     {
         return returnTotal();
+    }
+
+    public int getBonusScore()
+    {
+        return 0;
+    }
+
+    public boolean isFull()
+    {
+        return false;
     }
 }

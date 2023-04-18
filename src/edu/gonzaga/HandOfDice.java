@@ -8,10 +8,11 @@ package edu.gonzaga;
 import java.util.Scanner;
 import java.lang.String;
 import java.util.*;
-import java.util.Arrays;
 
 public class HandOfDice extends Die
 {
+
+    public int[] getHandOfDice;
 
     public HandOfDice()
     {
@@ -22,12 +23,11 @@ public class HandOfDice extends Die
     }
 
     private static final int DICEINPLAY = 5;
-    ArrayList<Integer> handArray = new ArrayList<Integer>();
-    private String keep;
+    ArrayList<Integer> handArray = new ArrayList<>();
 
     public void rollHand()
     {
-        keep = "nnnnn";
+        String keep = "nnnnn";
         int turn = 1;
 
         while(turn < 4 && keep.compareTo("yyyyy") != 0)
@@ -40,9 +40,7 @@ public class HandOfDice extends Die
                     handArray.set(dieNum, getSideUp());
                 }
             }
-
             System.out.print("Your roll was: ");
-
             for(int dieNum = 0; dieNum < DICEINPLAY; dieNum++)
             {
                 System.out.print(handArray.get(dieNum));
@@ -71,7 +69,7 @@ public class HandOfDice extends Die
     }
 
     public void sortHand()
- {
+    {
         Collections.sort(handArray);
         System.out.print("Here is your sorted hand: ");
 
@@ -79,5 +77,14 @@ public class HandOfDice extends Die
         {
             System.out.print(handArray.get(dieNum) + " ");
         }
+        System.out.print("\n");
+        System.out.print("\n");
+    }
+
+    public void saveHandOfDice(int[] dice) {
+    }
+
+    public int[] getHandOfDice() {
+        return new int[0];
     }
 }

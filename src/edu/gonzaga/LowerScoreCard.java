@@ -39,7 +39,7 @@ public class LowerScoreCard extends CurrentScoreCard
     }
     public int returnMax()
     {
-        return returnMax();
+        return maxCount;
     }
 
     public int totalAllDice()
@@ -65,7 +65,6 @@ public class LowerScoreCard extends CurrentScoreCard
 
         for(int counter = 0; counter < 4; counter++)
         {
-//            HandOfDice hand = new HandOfDice();
             if(hand.handArray.get(counter) + 1 == hand.handArray.get(counter + 1))
                 currLength++;
             else if(hand.handArray.get(counter) + 1 < hand.handArray.get(counter + 1))
